@@ -1,16 +1,17 @@
 package org.example.algorithms
 
-import org.example.algorithms.datastructures.trees.Node
+import org.example.algorithms.datastructures.trees.BinaryNode
+import org.example.algorithms.datastructures.trees.NonBinaryNode
 
 fun main() {
-    val tree = Node(6)
-        .insert(Node(4)
-            .insert(Node(3))
-            .insert(Node(5)))
-        .insert(Node(8)
-            .insert(Node(7))
-            .insert(Node(9)))
-//    Node.dfs(tree)
+    val tree = NonBinaryNode(6)
+        .insert(NonBinaryNode(4)
+            .insert(NonBinaryNode(3))
+            .insert(NonBinaryNode(5)))
+        .insert(NonBinaryNode(8)
+            .insert(NonBinaryNode(7))
+            .insert(NonBinaryNode(9)))
+
     println("DFS (Pre-order):")
     var res = tree.dfsPreOrder(13)
     println("\nDFS (Post-order)")
@@ -21,4 +22,25 @@ fun main() {
     res = tree.bfs(13)
     println("\n\n")
 //    println(res?.value)
+    val tree2 = BinaryNode(6)
+        .insert(BinaryNode(4)
+            .insert(BinaryNode(3))
+            .insert(BinaryNode(5)))
+        .insert(BinaryNode(8)
+            .insert(BinaryNode(7))
+            .insert(BinaryNode(9)))
+
+    println("DFS (Pre-order):")
+    var res2 = tree2.dfsPreOrder(13)
+    println("\nDFS (Post-order)")
+//    println(res2?.value)
+    res2 = tree2.dfsPostOrder(13)
+    println("\nDFS (In-order)")
+//    println(res2?.value)
+    res2 = tree2.dfsInOrder(13)
+    println("\nBFS")
+//    println(res2?.value)
+    res2 = tree2.bfs(13)
+    println("\n\n")
+//    println(res2?.value)
 }

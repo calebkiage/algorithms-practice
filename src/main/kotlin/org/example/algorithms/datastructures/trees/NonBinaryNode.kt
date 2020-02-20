@@ -2,13 +2,13 @@ package org.example.algorithms.datastructures.trees
 
 import java.util.*
 
-class Node<T>(val value: T) {
-    val children: MutableList<Node<T>> = mutableListOf()
+class NonBinaryNode<T>(val value: T) {
+    val children: MutableList<NonBinaryNode<T>> = mutableListOf()
 
     // Root node has no parent
-    var parent: Node<T>? = null
+    var parent: NonBinaryNode<T>? = null
 
-    fun insert(node: Node<T>): Node<T> {
+    fun insert(node: NonBinaryNode<T>): NonBinaryNode<T> {
         node.parent = this
         this.children.add(node)
         return this
@@ -23,7 +23,7 @@ class Node<T>(val value: T) {
         }
     }
 
-    fun dfsPreOrder(value: T): Node<T>? {
+    fun dfsPreOrder(value: T): NonBinaryNode<T>? {
         print("${this.value} ")
         if (this.value == value) {
             return this
@@ -38,7 +38,7 @@ class Node<T>(val value: T) {
         return null
     }
 
-    fun dfsPostOrder(value: T): Node<T>? {
+    fun dfsPostOrder(value: T): NonBinaryNode<T>? {
         for (child in children) {
             val res = child.dfsPostOrder(value)
             if (res != null) {
@@ -54,9 +54,9 @@ class Node<T>(val value: T) {
         return null
     }
 
-    fun bfs(value: T): Node<T>? {
+    fun bfs(value: T): NonBinaryNode<T>? {
         // use queue to keep track of siblings.
-        val nodes: Queue<Node<T>> = LinkedList()
+        val nodes: Queue<NonBinaryNode<T>> = LinkedList()
 
         // start the search from this node
         nodes.add(this)
