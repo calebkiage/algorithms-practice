@@ -1,5 +1,6 @@
 package org.example.algorithms
 
+import org.example.algorithms.datastructures.linkedlist.Node
 import org.example.algorithms.datastructures.trees.BinaryNode
 import org.example.algorithms.datastructures.trees.NonBinaryNode
 
@@ -43,4 +44,7 @@ fun main() {
     res2 = tree2.bfs(13)
     println("\n\n")
 //    println(res2?.value)
+
+    val linkedList = Node(1, Node(2, Node(3)))
+    val reversed = Node.reverse(linkedList)
 }
