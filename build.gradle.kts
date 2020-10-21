@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.4.10"
 }
 
 group = "org.example"
@@ -9,9 +9,7 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-}
+dependencies {}
 
 tasks {
     compileKotlin {
