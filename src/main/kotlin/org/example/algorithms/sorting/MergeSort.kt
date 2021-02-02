@@ -1,12 +1,15 @@
 package org.example.algorithms.sorting
 
-fun sort(elements: Array<Int>): Array<Int> {
+import java.time.Instant
+import java.util.*
+
+fun sort(elements: IntArray): IntArray {
     if (elements.isEmpty() || elements.size == 1) return elements
     splitMerge(elements, 0, elements.size - 1)
     return elements
 }
 
-private fun splitMerge(inputArray: Array<Int>, start: Int = 0, end: Int = 0) {
+private fun splitMerge(inputArray: IntArray, start: Int = 0, end: Int = 0) {
     // Exit case: Do nothing if the difference between start & end is < 1 i.e. single element array.
     // For an array with 1 element, start == end is true
     // A single element array is sorted.
@@ -27,14 +30,14 @@ private fun splitMerge(inputArray: Array<Int>, start: Int = 0, end: Int = 0) {
     splitMerge(inputArray, middle + 1, end)
 
     // Split the array at the mid point. For odd length arrays, the left side is larger
-    val leftArray = Array(middle - start + 1) { i -> inputArray[start + i] }
-    val rightArray = Array(end - middle) { i -> inputArray[i + middle + 1] }
+    val leftArray = IntArray(middle - start + 1) { i -> inputArray[start + i] }
+    val rightArray = IntArray(end - middle) { i -> inputArray[i + middle + 1] }
 
     // Run the merge function for elements in leftArray & rightArray
     merge(inputArray, leftArray, rightArray, start)
 }
 
-fun merge(inputArray: Array<Int>, leftArray: Array<Int>, rightArray: Array<Int>, startIndex: Int) {
+fun merge(inputArray: IntArray, leftArray: IntArray, rightArray: IntArray, startIndex: Int) {
     var index = startIndex // current index of merged sub-array
 
     var i = 0 // left array start
@@ -60,10 +63,14 @@ fun merge(inputArray: Array<Int>, leftArray: Array<Int>, rightArray: Array<Int>,
 }
 
 fun main() {
-    val sorted = sort(arrayOf(5, 4, 3, 2, 1, 10))
-    sorted.forEachIndexed { index, i ->
-        print("$i")
-        if (index < sorted.size - 1) print(" ")
-    }
-    println()
+    val start = Instant.now().toEpochMilli()
+    val rand = Random().ints(200_000).toArray()
+    println("Generated array in ${Instant.now().toEpochMilli() - start}ms")
+    val sorted = sort(rand)
+    println("Sorted array in ${Instant.now().toEpochMilli() - start}ms")
+//    sorted.forEachIndexed { index, i ->
+//        print("$i")
+//        if (index < sorted.size - 1) print(" ")
+//    }
+//    println()
 }
