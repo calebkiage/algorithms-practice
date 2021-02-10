@@ -3,6 +3,7 @@ package org.example.algorithms
 import org.example.algorithms.datastructures.linkedlist.Node
 import org.example.algorithms.datastructures.trees.BinaryNode
 import org.example.algorithms.datastructures.trees.NonBinaryNode
+import org.example.algorithms.fill.FloodFill
 
 fun main() {
     val tree = NonBinaryNode(6)
@@ -47,4 +48,10 @@ fun main() {
 
     val linkedList = Node(1, Node(2, Node(3)))
     val reversed = Node.reverse(linkedList)
+
+    // 0, 0, -1
+    // 0, -1, 0
+    // -1, 0, 0
+    val matrix: Array<IntArray> = arrayOf(intArrayOf(0,0,-1), intArrayOf(0,-1,0), intArrayOf(-1,0,0))
+    FloodFill.fill(matrix, startLocation = Pair(0, 0), fillValue = 1, boundaryValue = -1)
 }
