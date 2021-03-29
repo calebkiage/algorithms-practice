@@ -3,7 +3,9 @@ package org.example.algorithms
 import org.example.algorithms.datastructures.linkedlist.Node
 import org.example.algorithms.datastructures.trees.BinaryNode
 import org.example.algorithms.datastructures.trees.NonBinaryNode
+import org.example.algorithms.datastructures.trees.Tree
 import org.example.algorithms.fill.FloodFill
+import org.example.algorithms.datastructures.trees.Node as TreeNode
 
 fun main() {
     val tree = NonBinaryNode(6)
@@ -45,6 +47,21 @@ fun main() {
     res2 = tree2.bfs(13)
     println("\n\n")
 //    println(res2?.value)
+
+    val tree3Root = TreeNode(6)
+        .insert(TreeNode(4)
+            .insert(TreeNode(3))
+            .insert(TreeNode(5)))
+        .insert(TreeNode(8)
+            .insert(TreeNode(7))
+            .insert(TreeNode(9)))
+    val tree3 = Tree(tree3Root)
+    println("DFS Traversal (Pre-order):")
+    tree3.dfsPreOrderTraversal()
+    println("\nDFS Traversal (Post-order):")
+    tree3.dfsPostOrderTraversal()
+    println("\nBFS Traversal:")
+    tree3.bfsTraversal()
 
     val linkedList = Node(1, Node(2, Node(3)))
     val reversed = Node.reverse(linkedList)
