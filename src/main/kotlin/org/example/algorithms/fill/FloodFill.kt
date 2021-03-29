@@ -1,13 +1,17 @@
 package org.example.algorithms.fill
 
 import java.util.*
-import kotlin.collections.HashSet
 
 object FloodFill {
     // Pairs x, y
     // Array[rows][columns] ~ numRows = y, numCols = x
     // Assume square matrix
     fun fill(matrix: Array<IntArray>, startLocation: Pair<Int, Int>, fillValue: Int, boundaryValue: Int) {
+        // Helps prevent duplicates addition
+        bfs(matrix, startLocation, fillValue, boundaryValue)
+    }
+
+    private fun bfs(matrix: Array<IntArray>, startLocation: Pair<Int, Int>, fillValue: Int, boundaryValue: Int) {
         val numRows = matrix.size
         val numCols = matrix[0].size
         val queue: Queue<Pair<Int, Int>> = ArrayDeque()
@@ -19,7 +23,8 @@ object FloodFill {
         while (queue.isNotEmpty()) {
             val node = queue.poll()
             if (isInside(matrix[node.second][node.first], boundaryValue) && matrix[node.second][node.first] != fillValue) {
-                matrix[node.second][node.first] = fillValue
+                fillCell(matrix, node.second, node.first, fillValue)
+
                 // Add neighbours
                 // Top
                 if (hasNeighbour(Pair(node.first, node.second), Pair(numCols, numRows), Pair(0, 1))) {
@@ -55,6 +60,10 @@ object FloodFill {
                 }
             }
         }
+    }
+
+    private fun fillCell(matrix: Array<IntArray>, row: Int, col: Int, value: Int) {
+        matrix[row][col] = value
     }
 
     private fun isInside(value: Int, boundary: Int): Boolean {
